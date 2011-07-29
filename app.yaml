@@ -1,0 +1,23 @@
+application: play-vs-me
+version: test
+runtime: python
+api_version: 1
+
+handlers:
+- url: /clean
+  script: scripts/clean.py
+  login: admin
+
+- url: /_ah/start
+  script: scripts/loop.py
+  login: admin
+
+- url: /favicon.ico
+  static_files: favicon/favicon.ico
+  upload: favicon/favicon.ico
+
+- url: /static/
+  static_dir: static
+
+- url: /.*
+  script: scripts/main.py

@@ -1,0 +1,82 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Play versus me</title>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <link href="/static/style.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
+    <script type="text/javascript" src="/_ah/channel/jsapi"></script>
+    <script type="text/javascript">
+        var you = {{ me }};
+        var my_symbol = (you ? 'o' : 'x');
+        var token = '{{ token }}';
+        var game = {
+            id: '{{ id }}',
+            move: {{ move }},
+            board: '{{ board }}',
+            actions: {{ actions }},
+            chat: '{{ chat }}',
+            winner: null,
+            last: null,
+            request: null,
+            status: 'ok'
+        };
+
+        $().ready(function () {
+            $('.hide').hide();
+
+            $('.title a').hover(function () {
+                var tip = $('.title-tip');
+                if (tip.is(':hidden')) {
+                    tip.fadeIn();
+                }
+            }, function () {
+                $('.title-tip').fadeOut();
+            });
+        });
+    </script>
+    <script type="text/javascript" src="/static/game.js"></script>
+</head>
+<body>
+
+<div class="top">
+<div class="header">
+<div class="title"><a href="/">Play vs me</a></div>
+<div class="title-tip hide"><span>&larr;</span> to main page</div>
+</div>
+</div>
+
+<div class="content">
+
+<div class="column column-left">
+
+<h2><span>Game info</span></h2>
+<div class="info">
+<span>Link:</span> <input type="text" id="link" /><br />
+<span>Rule:</span> 5 in a row<br />
+<span>Moves:</span> <font id="actions"></font>
+</div>
+
+<h2><span>Game board</span></h2>
+<div id="board"></div>
+<br />
+Move: <b id="move"></b> <button id="request" class="button hide">Play again</button><br />
+
+</div>
+
+<div class="column column-right">
+
+<h2><span>Chat</span></h2>
+<div id="chat"></div>
+<h2><span>Message</span></h2>
+<input id="message" type="text" maxlength="40" />
+<button id="send" title="Or just press Enter" class="button">Send</button>
+
+</div>
+
+<div class="footer"></div>
+
+</div>
+
+</body>
+</html>

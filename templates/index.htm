@@ -1,0 +1,66 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Play versus me</title>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
+    <link href="/static/style.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript">
+        $().ready(function () {
+            $('input[type=radio]').each(function (i, elem) {
+                $(elem).css('margin', '0 0 3px 15px');
+                $(elem).next('span').css('cursor', 'pointer').click(function () {
+                    var value = $(elem).attr('checked');
+                    $(elem).attr('checked', !value);
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+<!-- Debug is "{{ debug }}" -->
+<div class="top">
+<div class="header">
+<div class="title"><a href="/">Play vs me</a></div>
+</div>
+</div>
+
+<div class="content">
+
+<div class="column">
+
+<h2><span>Welcome to Noughts and crosses game</span></h2>
+<b>
+It's a test version!<br />
+Shoud work only on latest browsers (tested on: Chrome 11.0, Opera 11.10, Firefox 4.0 and 3.6).<br />
+</b>
+There are {{ games }} games in base for last {{ timeout }}!
+
+{% if message %}
+<h2><span>Error</span></h2>
+<b>{{ message }}</b>
+{% endif %}
+
+<h2><span>Play a game</span></h2>
+<form action="/" method="post">
+<input type="hidden" name="create" value="true" />
+<div style="padding-bottom: 10px;">
+Enemy:<br />
+<input type="radio" name="enemy" value="human" checked="checked" /> <span>Partner</span> <small>(You'll need to give a link to your partner)</small><br />
+<input type="radio" name="enemy" value="bot" /> <span>Computer</span><br />
+</div>
+<input type="submit" value="Create game" class="button" />
+</form>
+<div class="footer"></div>
+</div>
+
+<div class="footer"></div>
+
+</div>
+
+</body>
+<!--
+    Suck my balls!
+    Contacts looks here: http://lol-checker.appspot.com/about
+-->
+</html>
