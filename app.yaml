@@ -8,10 +8,6 @@ handlers:
   script: scripts/clean.py
   login: admin
 
-- url: /_ah/start
-  script: scripts/loop.py
-  login: admin
-
 - url: /favicon.ico
   static_files: favicon/favicon.ico
   upload: favicon/favicon.ico
